@@ -125,7 +125,10 @@ def user_detail(request, id, page_no = 1):
     queryset = User.objects.all()
     users = [user.payload() for user in queryset]
     p = Paginator(users, 8)
-    page = p.page(page_no)
+    try:
+        page = p.page(page_no)
+    except EmptyPage:
+        page = p.page(1)
     content = {'page': page, 'previous_page': page_no-1, 'next_page': page_no+1}
     return render(request, 'index.html', content)
 
