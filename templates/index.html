@@ -1,0 +1,78 @@
+{% extends './base.html' %} 
+
+{% block title %} User {% endblock title %}
+
+{% block content %}
+	<div class="main-content">
+		{% include 'includes/messages.html' %}
+		<div class="row justify-content-center mt-2">
+			<div class="col-xl-8 mb-5 mb-xl-0">
+			  <div class="card shadow">
+				<div class="card-header border-0">
+				  <div class="row align-items-center">
+					<div class="col">
+					  <h1 class="mb-0">User Information</h1>
+					</div>
+					<div class="col text-right">
+					  <a href="/logout" class="btn btn-primary">Log Out</a>
+					</div>
+				  </div>
+				</div>
+				<div class="table-responsive">
+				  <!-- User table -->
+				  <table class="table align-items-center table-flush">
+					<thead class="thead-light">
+						<tr>
+							<th scope="col">
+								Username
+							</th>
+							<th scope="col">
+								Email
+							</th>
+							<th scope="col">
+								Address
+							</th>
+							<th scope="col">
+							</th>
+							<th scope="col">
+								
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for user in page.object_list %}
+							<tr>
+								<th class="name" scope="col">
+									{{user.username}}
+								</th>
+								<th scope="col">
+									{{ user.email }}
+								</th>
+								<th scope="col">
+									{{ user.address }}
+								</th>
+								<th>
+									<button class="btn btn-outline-success btn-icon btn-3" type="button" data-toggle="modal" data-target="#{{ user.id }}-form">
+										<span class="btn-inner--icon"><i class="ni ni-settings"></i></span>
+									</button>
+									{% include 'includes/modal.html' %}
+								</th>
+								<th scope="col">
+									<form action="delete/{{ user.id }}">
+										<button class="btn btn-outline-primary btn-icon btn-3" type="submit">
+											<span class="btn-inner--icon"></span><i class="ni ni-fat-remove"></i></span>
+										</button>
+									</form>
+								</th>
+							</tr>
+						{% endfor %}
+					</tbody>
+				  </table>
+				</div>
+				{% include 'includes/pagination.html' %}
+				
+			  </div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

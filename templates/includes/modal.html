@@ -1,0 +1,52 @@
+
+	<div class="modal fade" id="{{ user.id }}-form" tabindex="-1" role="dialog" aria-labelledby="{{user.id}}-form" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-body p-0">
+					<div class="card bg-secondary shadow border-0">
+						<div class="card-header bg-transparent">
+							<div class="text-center mt-2">
+								<h3>
+									Edit User
+								</h3>
+							</div>
+						</div>
+						<div class="card-body px-lg-5 py-lg-5">
+							<form role="form" action="update/{{ user.id }}" method="POST">
+								{% csrf_token %}
+								<div class="form-group mb-3">
+									<div class="input-group input-group-alternative">
+										<div class="input-group-prepend">
+											<span class="input-group-text"><i class="ni ni-single-02"></i></span>
+										</div>
+										{{ user.form.username }}
+									</div>
+								</div>
+
+								<div class="form-group mb-3">
+									<div class="input-group input-group-alternative">
+										<div class="input-group-prepend">
+											<span class="input-group-text"><i class="ni ni-shop"></i></span>
+										</div>
+										{{ user.form.address }}
+									</div>
+								</div>
+		
+								<div class="form-group mb-3">
+									<div class="input-group input-group-alternative">
+										<div class="input-group-prepend">
+											<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+										</div>
+										{{ user.form.email }}
+									</div>
+								</div>
+								<div class="text-center">
+									<button type="submit" class="btn btn-primary my-4">Save Changes</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
